@@ -1,8 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
+const choices = ["rock", "paper", "scissors"];
 
 const getComputerChoice = () => {
-  const choices = ["rock", "paper", "scissors"];
   let index = Math.floor(Math.random() * choices.length);
 
   return choices[index];
@@ -10,7 +10,12 @@ const getComputerChoice = () => {
 
 const getHumanChoice = () => {
   const input = prompt("Choose between rock, paper, and scissors");
-  return input;
+
+  if (choices.includes(input)) {
+    return input;
+  }
+
+  return NaN;
 };
 
 const playGame = (humanChoice, computerChoice) => {
@@ -37,26 +42,31 @@ const playRound = (humanChoice, computerChoice) => {
   const computerChoiceLowered = computerChoice.toLowerCase();
 
   if (humanChoiceLowered === computerChoiceLowered) {
-    alert(`It's a tie, both players chose ${humanChoiceLowered}`);
+    alert(
+      `It's a tie, both players chose ${humanChoiceLowered}\nPlayer: ${humanScore}\t Computer: ${computerScore}`
+    );
+    return;
   } else {
     // Human wins the round
     if (playGame(humanChoiceLowered, computerChoiceLowered)) {
       humanScore += 1;
       alert(`Player won! ${humanChoiceLowered} beats ${computerChoiceLowered}`);
+      alert(`Player: ${humanScore}\t Computer: ${computerScore}`);
       return;
     }
 
     computerScore += 1;
     alert(`Computer won! ${computerChoiceLowered} beats ${humanChoiceLowered}`);
+    alert(`Player: ${humanScore}\t Computer: ${computerScore}`);
     return;
   }
 };
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-console.log(humanChoice);
-console.log(computerChoice);
-playRound(humanChoice, computerChoice);
+for (let i = 0; i < 5; i++) {
+  const humanChoice = getHumanChoice();
+  const computerChoice = getComputerChoice();
+  playRound(humanChoice, computerChoice);
+}
 
 /*
 rock beats scissors
