@@ -9,13 +9,29 @@ const getComputerChoice = () => {
 };
 
 const getHumanChoice = () => {
-  const input = prompt("Choose between rock, paper, and scissors");
+  let input = prompt("Choose between rock, paper, and scissors");
 
-  if (choices.includes(input)) {
-    return input;
+  // NaN at first attempt
+  console.log(input);
+  if (!input) {
+    alert("No input from user, we let computer choose");
+    return getComputerChoice();
   }
 
-  return NaN;
+  input = input.toLowerCase();
+  while (!choices.includes(input)) {
+    input = prompt("Invalid choice! Choose between rock, paper, and scissors");
+
+    console.log(input);
+    if (!input) {
+      alert("No input from user, we let computer choose");
+      return getComputerChoice();
+    }
+
+    input = input.toLowerCase();
+  }
+
+  return input;
 };
 
 const playGame = (humanChoice, computerChoice) => {
@@ -74,6 +90,9 @@ scissors beats paper
 paper beats rock
 
 Bugs
-1. 
+1. NaN value when input is not included in choices[]
+2. lowercase should be on the input sideo
+3. Alert score must take only one line and not repeatedly used
+4. Ask user how many rounds they want it to be 
 
 */
