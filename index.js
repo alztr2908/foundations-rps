@@ -72,4 +72,8 @@ for (let i = 0; i < 5; i++) {
 rock beats scissors
 scissors beats paper
 paper beats rock
+
+Bugs
+1. 
+
 */
