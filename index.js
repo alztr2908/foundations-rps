@@ -12,8 +12,12 @@ const getHumanChoice = () => {
   let input = prompt("Choose between rock, paper, and scissors");
 
   // NaN at first attempt
-  console.log(input);
-  if (!input) {
+  if (input == NaN || input == null) {
+    return null;
+  }
+
+  // No input from user
+  if (input == "") {
     alert("No input from user, we let computer choose");
     return getComputerChoice();
   }
@@ -22,8 +26,13 @@ const getHumanChoice = () => {
   while (!choices.includes(input)) {
     input = prompt("Invalid choice! Choose between rock, paper, and scissors");
 
-    console.log(input);
-    if (!input) {
+    // NaN at first attempt
+    if (input == NaN || input == null) {
+      return null;
+    }
+
+    // No input from user
+    if (input == "") {
       alert("No input from user, we let computer choose");
       return getComputerChoice();
     }
@@ -80,6 +89,11 @@ const playRound = (humanChoice, computerChoice) => {
 
 for (let i = 0; i < 5; i++) {
   const humanChoice = getHumanChoice();
+
+  if (!humanChoice) {
+    alert("User cancelled the game, stopping...");
+    break;
+  }
   const computerChoice = getComputerChoice();
   playRound(humanChoice, computerChoice);
 }
