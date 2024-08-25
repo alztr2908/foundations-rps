@@ -43,48 +43,33 @@ const getHumanChoice = () => {
   return input;
 };
 
-const playGame = (humanChoice, computerChoice) => {
-  if (humanChoice === "paper") {
-    if (computerChoice === "rock") {
-      return true;
-    }
-    return false;
-  } else if (humanChoice === "rock") {
-    if (computerChoice === "scissors") {
-      return true;
-    }
-    return false;
-  } else if (humanChoice == "scissors") {
-    if (computerChoice === "paper") {
-      return true;
-    }
-    return false;
+const evaluateRound = (humanChoice, computerChoice) => {
+  if (humanChoice === "paper" && computerChoice === "rock") {
+    return true;
+  } else if (humanChoice === "rock" && computerChoice === "scissors") {
+    return true;
+  } else if (humanChoice == "scissors" && computerChoice === "paper") {
+    return true;
   }
+  return false;
 };
 
 const playRound = (humanChoice, computerChoice) => {
-  const humanChoiceLowered = humanChoice.toLowerCase();
-  const computerChoiceLowered = computerChoice.toLowerCase();
-
-  if (humanChoiceLowered === computerChoiceLowered) {
-    alert(
-      `It's a tie, both players chose ${humanChoiceLowered}\nPlayer: ${humanScore}\t Computer: ${computerScore}`
-    );
-    return;
+  if (humanChoice === computerChoice) {
+    alert(`It's a tie, both players chose ${humanChoice}`);
   } else {
     // Human wins the round
-    if (playGame(humanChoiceLowered, computerChoiceLowered)) {
+    if (evaluateRound(humanChoice, computerChoice)) {
       humanScore += 1;
-      alert(`Player won! ${humanChoiceLowered} beats ${computerChoiceLowered}`);
-      alert(`Player: ${humanScore}\t Computer: ${computerScore}`);
-      return;
+      alert(`Player won! ${humanChoice} beats ${computerChoice}`);
+    } else {
+      computerScore += 1;
+      alert(`Computer won! ${computerChoice} beats ${humanChoice}`);
     }
-
-    computerScore += 1;
-    alert(`Computer won! ${computerChoiceLowered} beats ${humanChoiceLowered}`);
-    alert(`Player: ${humanScore}\t Computer: ${computerScore}`);
-    return;
   }
+
+  alert(`Player: ${humanScore}\t Computer: ${computerScore}`);
+  return;
 };
 
 for (let i = 0; i < 5; i++) {
