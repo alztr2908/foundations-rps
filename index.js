@@ -72,8 +72,8 @@ const playRound = (humanChoice, computerChoice) => {
   return;
 };
 
-const playGame = () => {
-  while (humanScore < 5 && computerScore < 5) {
+const playGame = (score) => {
+  while (humanScore < score && computerScore < score) {
     const humanChoice = getHumanChoice();
 
     if (!humanChoice) {
@@ -84,7 +84,7 @@ const playGame = () => {
     playRound(humanChoice, computerChoice);
   }
 
-  if (computerScore == 2) {
+  if (computerScore == score) {
     alert("Computer won the game!");
     return;
   }
@@ -93,7 +93,7 @@ const playGame = () => {
   return;
 };
 
-playGame();
+playGame(5);
 
 /*
 rock beats scissors
