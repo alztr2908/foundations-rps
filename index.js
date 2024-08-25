@@ -72,16 +72,28 @@ const playRound = (humanChoice, computerChoice) => {
   return;
 };
 
-for (let i = 0; i < 5; i++) {
-  const humanChoice = getHumanChoice();
+const playGame = () => {
+  while (humanScore < 5 && computerScore < 5) {
+    const humanChoice = getHumanChoice();
 
-  if (!humanChoice) {
-    alert("User cancelled the game, stopping...");
-    break;
+    if (!humanChoice) {
+      alert("User cancelled the game, stopping...");
+      return;
+    }
+    const computerChoice = getComputerChoice();
+    playRound(humanChoice, computerChoice);
   }
-  const computerChoice = getComputerChoice();
-  playRound(humanChoice, computerChoice);
-}
+
+  if (computerScore == 2) {
+    alert("Computer won the game!");
+    return;
+  }
+
+  alert("Player won the game!");
+  return;
+};
+
+playGame();
 
 /*
 rock beats scissors
