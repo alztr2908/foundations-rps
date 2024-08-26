@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin: 0.5em;
+  font-size: 40px;
+}
+
+.choices > button {
+  margin: 0.5em;
+  font-size: 20px;
+  padding: 0.25em 0.75em;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
+
+.score-style {
+  font-size: 20px;
+}
+
+.score-player {
+  margin-right: 3em;
+}
+
+#gameStarterButton {
+  font-size: 32px;
+  margin: 1em;
+  padding: 0.25em 0.75em;
+}

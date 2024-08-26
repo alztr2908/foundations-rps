@@ -3,9 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Foundation: RPS-UI</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script src="index.js"></script>
+    <div class="container">
+      <h1 class="title">Rock, paper, and scissors</h1>
+      <!-- <h2>Race to <span class="targetScore">5</span></h2> -->
+      <div class="choices">
+        <button>Rock</button>
+        <button>Paper</button>
+        <button>Scissors</button>
+      </div>
+      <h2 class="results"></h2>
+      <div class="score">
+        <h2 class="score-style score-player">
+          Player Score: <span class="playerScore">0</span>
+        </h2>
+        <h2 class="score-style">
+          Computer Score <span class="computerScore">0</span>
+        </h2>
+      </div>
+      <button id="gameStarterButton">New game</button>
+    </div>
+    <!-- <script src="index.js"></script> -->
   </body>
 </html>
