@@ -1,11 +1,39 @@
-let humanScore = 0;
-let computerScore = 0;
-const choices = ["rock", "paper", "scissors"];
+const choices = document.querySelector(".choices");
+const choicesListButtons = choices.querySelectorAll("button");
+const choicesListActual = ["rock", "paper", "scissors"];
+const gameStarterButton = document.querySelector("#gameStarterButton");
+const playerScore = document.querySelector(".playerScore");
+const computerScore = document.querySelector(".computerScore");
+const resultOfGame = document.querySelector(".results");
+
+choicesListButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const playerChoice = e.target.textContent;
+
+    if (playerChoice.toLowerCase() == getComputerChoice()) {
+      resultOfGame.textContent = "It's a tie";
+    } else if (evaluateRound(playerChoice.toLowerCase(), getComputerChoice())) {
+      resultOfGame.textContent = "You win";
+      playerScore.textContent = (
+        parseInt(playerScore.textContent) + 1
+      ).toString();
+    } else {
+      resultOfGame.textContent = "You lose";
+      computerScore.textContent = (
+        parseInt(computerScore.textContent) + 1
+      ).toString();
+    }
+
+    setTimeout(() => {
+      resultOfGame.textContent = "Game is not over, choose one";
+    }, 3000);
+  });
+});
 
 const getComputerChoice = () => {
-  let index = Math.floor(Math.random() * choices.length);
+  let index = Math.floor(Math.random() * choicesListActual.length);
 
-  return choices[index];
+  return choicesListActual[index];
 };
 
 const getHumanChoice = () => {
@@ -93,7 +121,7 @@ const playGame = (score) => {
   return;
 };
 
-playGame(5);
+// playGame(5);
 
 /*
 rock beats scissors
