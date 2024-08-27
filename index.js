@@ -6,70 +6,39 @@ const playerScore = document.querySelector(".playerScore");
 const computerScore = document.querySelector(".computerScore");
 const resultOfGame = document.querySelector(".results");
 
-choicesListButtons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    const playerChoice = e.target.textContent;
-
-    if (playerChoice.toLowerCase() == getComputerChoice()) {
-      resultOfGame.textContent = "It's a tie";
-    } else if (evaluateRound(playerChoice.toLowerCase(), getComputerChoice())) {
-      resultOfGame.textContent = "You win";
-      playerScore.textContent = (
-        parseInt(playerScore.textContent) + 1
-      ).toString();
-    } else {
-      resultOfGame.textContent = "You lose";
-      computerScore.textContent = (
-        parseInt(computerScore.textContent) + 1
-      ).toString();
-    }
-
-    setTimeout(() => {
-      resultOfGame.textContent = "Game is not over, choose one";
-    }, 3000);
-  });
-});
-
 const getComputerChoice = () => {
   let index = Math.floor(Math.random() * choicesListActual.length);
 
   return choicesListActual[index];
 };
 
-const getHumanChoice = () => {
-  let input = prompt("Choose between rock, paper, and scissors");
+// const myFunction = () => {
 
-  // NaN at first attempt
-  if (input == NaN || input == null) {
-    return null;
-  }
+// }
 
-  // No input from user
-  if (input == "") {
-    alert("No input from user, we let computer choose");
-    return getComputerChoice();
-  }
+choicesListButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    playerChoice = e.target.textContent;
+    console.log(playerChoice);
+  });
+});
 
-  input = input.toLowerCase();
-  while (!choices.includes(input)) {
-    input = prompt("Invalid choice! Choose between rock, paper, and scissors");
-
-    // NaN at first attempt
-    if (input == NaN || input == null) {
-      return null;
+gameStarterButton.addEventListener("click", (e) => {
+  choicesListButtons.forEach((button) => {
+    if (button.disabled) {
+      button.disabled = false;
+      e.currentTarget.textContent = "Stop game";
+    } else {
+      button.disabled = true;
+      console.log(e.currentTarget);
+      e.currentTarget.textContent = "New game";
     }
+  });
+});
 
-    // No input from user
-    if (input == "") {
-      alert("No input from user, we let computer choose");
-      return getComputerChoice();
-    }
+// const getPlayerChoice = () => {};
 
-    input = input.toLowerCase();
-  }
-
-  return input;
-};
+// console.log(getPlayerChoice());
 
 const evaluateRound = (humanChoice, computerChoice) => {
   if (humanChoice === "paper" && computerChoice === "rock") {

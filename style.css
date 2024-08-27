@@ -16,9 +16,11 @@ body {
 
 .container {
   border: 3px solid black;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1em;
 }
 
 .title {
