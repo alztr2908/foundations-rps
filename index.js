@@ -70,6 +70,9 @@ choicesListButtons.forEach((button) => {
           resultOfGame.textContent = "Computer won, better luck next time";
         }
       });
+      setTimeout(() => {
+        resultOfGame.textContent = "Start a new game?";
+      }, 2000);
     } else {
       choicesListButtons.forEach((button) => {
         button.disabled = false;
