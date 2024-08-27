@@ -108,38 +108,3 @@ const playRound = (humanChoice, computerChoice) => {
   }
   // return;
 };
-
-const playGame = (score) => {
-  while (humanScore < score && computerScore < score) {
-    const humanChoice = getHumanChoice();
-
-    if (!humanChoice) {
-      alert("User cancelled the game, stopping...");
-      return;
-    }
-    const computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-  }
-
-  if (computerScore == score) {
-    alert("Computer won the game!");
-    return;
-  }
-
-  alert("Player won the game!");
-  return;
-};
-
-// playGame(5);
-
-/*
-rock beats scissors
-scissors beats paper
-paper beats rock
-
-Bugs
-1. Integrate DOM to our old game logic
-2. User can input how many score to play
-3. Once target score was achieved, user cannot click choices button and automatic spawn of new game button
-
-*/
