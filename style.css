@@ -28,6 +28,10 @@ body {
   font-size: 40px;
 }
 
+.targetScore {
+  margin: 0.5em;
+}
+
 .choices > button {
   margin: 0.5em;
   font-size: 20px;
@@ -45,7 +49,7 @@ body {
 }
 
 .score-style {
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .score-player {

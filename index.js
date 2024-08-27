@@ -5,6 +5,7 @@ const gameStarterButton = document.querySelector("#gameStarterButton");
 const playerScore = document.querySelector(".playerScore");
 const computerScore = document.querySelector(".computerScore");
 const resultOfGame = document.querySelector(".results");
+const targetScore = document.querySelector(".targetScore");
 
 const getComputerChoice = () => {
   let index = Math.floor(Math.random() * choicesListActual.length);
@@ -24,19 +25,32 @@ choicesListButtons.forEach((button) => {
 });
 
 gameStarterButton.addEventListener("click", (e) => {
+  let flag = false;
   choicesListButtons.forEach((button) => {
     if (button.disabled) {
       button.disabled = false;
-      resultOfGame.textContent = "Click a button from RPS buttons";
-      e.currentTarget.textContent = "Stop game";
+      flag = true;
     } else {
       button.disabled = true;
-      e.currentTarget.textContent = "New game";
-      resultOfGame.textContent = "Start a new game?";
-      playerScore.textContent = "0";
-      computerScore.textContent = "0";
+      flag = false;
     }
   });
+
+  if (flag) {
+    let score = parseInt(prompt("Race to?"));
+    if (score == NaN) {
+      flag = false;
+    }
+    targetScore.textContent = `Race to ${score}`;
+    resultOfGame.textContent = "Click a button from RPS buttons";
+    e.currentTarget.textContent = "Stop game";
+  } else {
+    e.currentTarget.textContent = "New game";
+    targetScore.textContent = "";
+    resultOfGame.textContent = "Start a new game?";
+    playerScore.textContent = "0";
+    computerScore.textContent = "0";
+  }
 });
 
 const evaluateRound = (humanChoice, computerChoice) => {
