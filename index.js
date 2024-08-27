@@ -12,14 +12,14 @@ const getComputerChoice = () => {
   return choicesListActual[index];
 };
 
-// const myFunction = () => {
-
-// }
-
+// replace playGame()
 choicesListButtons.forEach((button) => {
+  button.disabled = true; // disabled at first reload
   button.addEventListener("click", (e) => {
-    playerChoice = e.target.textContent;
-    console.log(playerChoice);
+    const playerChoice = e.currentTarget.textContent;
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice.toLowerCase(), computerChoice);
+    console.log();
   });
 });
 
@@ -27,18 +27,17 @@ gameStarterButton.addEventListener("click", (e) => {
   choicesListButtons.forEach((button) => {
     if (button.disabled) {
       button.disabled = false;
+      resultOfGame.textContent = "Click a button from RPS buttons";
       e.currentTarget.textContent = "Stop game";
     } else {
       button.disabled = true;
-      console.log(e.currentTarget);
       e.currentTarget.textContent = "New game";
+      resultOfGame.textContent = "Start a new game?";
+      playerScore.textContent = "0";
+      computerScore.textContent = "0";
     }
   });
 });
-
-// const getPlayerChoice = () => {};
-
-// console.log(getPlayerChoice());
 
 const evaluateRound = (humanChoice, computerChoice) => {
   if (humanChoice === "paper" && computerChoice === "rock") {
@@ -53,20 +52,22 @@ const evaluateRound = (humanChoice, computerChoice) => {
 
 const playRound = (humanChoice, computerChoice) => {
   if (humanChoice === computerChoice) {
-    alert(`It's a tie, both players chose ${humanChoice}`);
+    resultOfGame.textContent = `It's a tie, both players chose ${humanChoice}`;
   } else {
     // Human wins the round
     if (evaluateRound(humanChoice, computerChoice)) {
-      humanScore += 1;
-      alert(`Player won! ${humanChoice} beats ${computerChoice}`);
+      resultOfGame.textContent = `Player won, ${humanChoice} beats ${computerChoice}!`;
+      playerScore.textContent = (
+        parseInt(playerScore.textContent) + 1
+      ).toString();
     } else {
-      computerScore += 1;
-      alert(`Computer won! ${computerChoice} beats ${humanChoice}`);
+      resultOfGame.textContent = `Computer won, ${computerChoice} beats ${humanChoice}!`;
+      computerScore.textContent = (
+        parseInt(computerScore.textContent) + 1
+      ).toString();
     }
   }
-
-  alert(`Player: ${humanScore}\t Computer: ${computerScore}`);
-  return;
+  // return;
 };
 
 const playGame = (score) => {
@@ -98,9 +99,8 @@ scissors beats paper
 paper beats rock
 
 Bugs
-1. NaN value when input is not included in choices[]
-2. lowercase should be on the input sideo
-3. Alert score must take only one line and not repeatedly used
-4. Ask user how many rounds they want it to be 
+1. Integrate DOM to our old game logic
+2. User can input how many score to play
+3. Once target score was achieved, user cannot click choices button and automatic spawn of new game button
 
 */

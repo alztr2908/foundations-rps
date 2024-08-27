@@ -20,7 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1em;
+  padding: 2.5em;
 }
 
 .title {
@@ -32,6 +32,10 @@ body {
   margin: 0.5em;
   font-size: 20px;
   padding: 0.25em 0.75em;
+}
+
+.results {
+  margin: 1em;
 }
 
 .score {
