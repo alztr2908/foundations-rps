@@ -61,3 +61,9 @@ body {
   margin: 1em;
   padding: 0.25em 0.75em;
 }
+
+footer {
+  background-color: rgb(183, 197, 208);
+  padding: 1em;
+  border-radius: 10px;
+}

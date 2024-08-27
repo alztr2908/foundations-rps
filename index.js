@@ -14,17 +14,6 @@ const getComputerChoice = () => {
   return choicesListActual[index];
 };
 
-// replace playGame()
-choicesListButtons.forEach((button) => {
-  button.disabled = true; // disabled at first reload
-  button.addEventListener("click", (e) => {
-    const playerChoice = e.currentTarget.textContent;
-    const computerChoice = getComputerChoice();
-    playRound(playerChoice.toLowerCase(), computerChoice);
-    console.log();
-  });
-});
-
 gameStarterButton.addEventListener("click", (e) => {
   if (flag) {
     // enable buttons
@@ -34,13 +23,13 @@ gameStarterButton.addEventListener("click", (e) => {
 
     resultOfGame.textContent = "Click a button from RPS buttons";
     e.currentTarget.textContent = "Stop game";
-    let score = parseInt(prompt("Race to?"));
+    score = parseInt(prompt("Race to?"));
 
     while (isNaN(score)) {
       score = parseInt(prompt("Enter a valid number"));
     }
 
-    targetScore.textContent = `Race to ${score}`;
+    targetScore.textContent = `${score}`;
     flag = false;
   } else {
     // disable buttons
@@ -55,6 +44,38 @@ gameStarterButton.addEventListener("click", (e) => {
     computerScore.textContent = "0";
     flag = true;
   }
+});
+
+// replace playGame()
+choicesListButtons.forEach((button) => {
+  button.disabled = true; // disabled at first reload
+
+  button.addEventListener("click", (e) => {
+    const playerChoice = e.currentTarget.textContent;
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice.toLowerCase(), computerChoice);
+
+    if (
+      parseInt(playerScore.textContent) == parseInt(targetScore.textContent) ||
+      parseInt(computerScore.textContent) == parseInt(targetScore.textContent)
+    ) {
+      choicesListButtons.forEach((button) => {
+        button.disabled = true;
+        if (
+          parseInt(playerScore.textContent) >
+          parseInt(computerScore.textContent)
+        ) {
+          resultOfGame.textContent = "Congratulations, you won!";
+        } else {
+          resultOfGame.textContent = "Computer won, better luck next time";
+        }
+      });
+    } else {
+      choicesListButtons.forEach((button) => {
+        button.disabled = false;
+      });
+    }
+  });
 });
 
 const evaluateRound = (humanChoice, computerChoice) => {
